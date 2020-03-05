@@ -1,0 +1,63 @@
+<div fxFlex.lg="40" fxFlex.sm="10" fxFlexOffset.lg="30" style=" width: 400px;" fxFlexAlign="center">
+  <mat-card fxFill style="background: beige">
+    <mat-card-header>
+      <mat-card-title>{{post.title}} </mat-card-title>
+    </mat-card-header>
+    <hr>
+    <mat-card-content>
+      <p>
+        {{post.body}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+    <mat-card-footer style="padding: 1em">
+      <div fxLayout="row"  fxLayoutGap.lg="70px" fxFlex>
+          <div>
+          <span>Comments</span>
+            <ol *ngIf="comments">
+            <li *ngFor="let comment of comments">
+              <ul>
+                <li><strong>Name :</strong>{{comment.name}}</li>
+                <li><strong>Email :</strong>{{comment.email}}</li>
+                <li><strong>Content :</strong>{{comment.body}}</li>
+
+              </ul>
+            </li>
+          </ol>
+            <a routerLink="/post/{{post.id}}" > Click to see all comments</a>
+        </div>
+        <div>
+          <form>
+            <mat-form-field>
+              <mat-label>
+                Name :
+              </mat-label>
+              <input  required [(ngModel)]="name" name="name" type="text" matInput placeholder="Ex. Saif Eddin" >
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>
+                Email :
+              </mat-label>
+              <input required [(ngModel)]="email" name="email" type="email" matInput placeholder="Ex. saif.abid@ymail.com" >
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Leave a comment</mat-label>
+              <textarea required [(ngModel)]="commentValue" name="commentValue" matInput placeholder="Ex. this post is great..." rows="5"></textarea>
+            </mat-form-field>
+            <button (click)="addComment()" mat-raised-button color="primary" style="margin-left: 1em">Submit</button>
+
+          </form>
+        </div>
+      </div>
+
+
+
+    </mat-card-footer>
+  </mat-card>
+
+
+
